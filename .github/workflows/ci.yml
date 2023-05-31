@@ -33,13 +33,11 @@ jobs:
       run: |
         source "$INIT_ENV"
         source "$ROS_2_ENV"
-        sed -i '/colcon build/ s/$/ --packages-up-to ns3_adapter/' /home/carma/.ci-image/engineering_tools/code_coverage/make_with_coverage.bash
         make_with_coverage.bash -m -e /opt/carma/ -o ./coverage_reports/gcov
     - name: Run C++ Tests
       run: |
         source "$INIT_ENV"
         source "$ROS_2_ENV"
-        sed -i '/colcon test/ s/$/ --packages-above ns3_adapter/' /home/carma/.ci-image/engineering_tools/code_coverage/make_with_coverage.bash
         make_with_coverage.bash -t -e /opt/carma/ -o ./coverage_reports/gcov
     - name: Run SonarScanner
       uses: usdot-fhwa-stol/actions/sonar-scanner@main
